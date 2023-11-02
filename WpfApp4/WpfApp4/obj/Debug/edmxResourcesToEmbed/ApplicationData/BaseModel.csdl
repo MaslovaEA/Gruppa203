@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProbaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ProbaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Person" EntityType="ProbaModel.Person" />
+    <EntitySet Name="Role" EntityType="ProbaModel.Role" />
+    <AssociationSet Name="FK_Person_Role" Association="ProbaModel.FK_Person_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <EntitySet Name="Kategorii_tovara" EntityType="ProbaModel.Kategorii_tovara" />
+    <EntitySet Name="Tovar" EntityType="ProbaModel.Tovar" />
+    <AssociationSet Name="FK__Tovar__Kategoriy__5AEE82B9" Association="ProbaModel.FK__Tovar__Kategoriy__5AEE82B9">
+      <End Role="Kategorii_tovara" EntitySet="Kategorii_tovara" />
+      <End Role="Tovar" EntitySet="Tovar" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="idrole" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Role" Relationship="ProbaModel.FK_Person_Role" FromRole="Person" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameRole" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="ProbaModel.FK_Person_Role" FromRole="Role" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK_Person_Role">
+    <End Type="ProbaModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="ProbaModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="idrole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Kategorii_tovara">
+    <Key>
+      <PropertyRef Name="ID_Kategorii" />
+    </Key>
+    <Property Name="ID_Kategorii" Type="Int32" Nullable="false" />
+    <Property Name="Nazvanie_kategorii" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tovar" Relationship="ProbaModel.FK__Tovar__Kategoriy__5AEE82B9" FromRole="Kategorii_tovara" ToRole="Tovar" />
+  </EntityType>
+  <EntityType Name="Tovar">
+    <Key>
+      <PropertyRef Name="ID_tovara" />
+    </Key>
+    <Property Name="ID_tovara" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Nazvanie_tovara" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kategoriya_tovara" Type="Int32" Nullable="false" />
+    <Property Name="Skidka" Type="Int32" Nullable="false" />
+    <Property Name="Kolichestvo__Na_Sklade" Type="Int32" Nullable="false" />
+    <Property Name="Opisanie" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Izobrajenie" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Kategorii_tovara" Relationship="ProbaModel.FK__Tovar__Kategoriy__5AEE82B9" FromRole="Tovar" ToRole="Kategorii_tovara" />
+  </EntityType>
+  <Association Name="FK__Tovar__Kategoriy__5AEE82B9">
+    <End Type="ProbaModel.Kategorii_tovara" Role="Kategorii_tovara" Multiplicity="1" />
+    <End Type="ProbaModel.Tovar" Role="Tovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategorii_tovara">
+        <PropertyRef Name="ID_Kategorii" />
+      </Principal>
+      <Dependent Role="Tovar">
+        <PropertyRef Name="Kategoriya_tovara" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

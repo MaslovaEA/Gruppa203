@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ProbaModelContainer" CdmEntityContainer="ProbaEntities">
+    <EntitySetMapping Name="Person">
+      <EntityTypeMapping TypeName="ProbaModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="idrole" ColumnName="idrole" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="ProbaModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategorii_tovara">
+      <EntityTypeMapping TypeName="ProbaModel.Kategorii_tovara">
+        <MappingFragment StoreEntitySet="Kategorii_tovara">
+          <ScalarProperty Name="Nazvanie_kategorii" ColumnName="Nazvanie_kategorii" />
+          <ScalarProperty Name="ID_Kategorii" ColumnName="ID_Kategorii" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tovar">
+      <EntityTypeMapping TypeName="ProbaModel.Tovar">
+        <MappingFragment StoreEntitySet="Tovar">
+          <ScalarProperty Name="Izobrajenie" ColumnName="Izobrajenie" />
+          <ScalarProperty Name="Opisanie" ColumnName="Opisanie" />
+          <ScalarProperty Name="Kolichestvo__Na_Sklade" ColumnName="Kolichestvo__Na_Sklade" />
+          <ScalarProperty Name="Skidka" ColumnName="Skidka" />
+          <ScalarProperty Name="Kategoriya_tovara" ColumnName="Kategoriya_tovara" />
+          <ScalarProperty Name="Nazvanie_tovara" ColumnName="Nazvanie_tovara" />
+          <ScalarProperty Name="ID_tovara" ColumnName="ID_tovara" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
